@@ -15,6 +15,7 @@ export default defineConfig({
   kind: 'province',
   name: 'Province of Batangas',
   shortName: 'Batangas',
+  siteUrl: 'https://batangas-transparency-portal.vercel.app',
   operator: { name: 'PogiCodes', url: 'https://github.com/pogicodes/batangas-transparency-portal' },
   scope: {
     offices: [
