@@ -1,33 +1,48 @@
 /**
  * This portal's configuration: the only file a fork needs to edit.
- * What each field means: src/config.ts. Generate one with `npm run setup`;
- * check it against the live API with `npm run check`.
+ * What each field means: src/config.ts. Check it against the live API with
+ * `npm run check`.
  *
- * This default is a worked example: the Province of Bohol. Its three DPWH
- * district engineering offices bring in every DPWH line listed under them;
- * the place name brings in lines from all four programs whose title names
- * Bohol (Central Office projects, farm-to-market roads, health facilities,
- * irrigation). More examples in examples/.
+ * The Province of Batangas. Its four DPWH district engineering offices bring
+ * in every DPWH line listed under them (the 2nd and 4th DEOs each serve two
+ * legislative districts, so they are shown whole); the place name brings in
+ * lines from all four programs whose title names Batangas.
  */
 import { defineConfig } from './src/config';
 
 export default defineConfig({
-  id: 'bohol-province',
+  id: 'batangas-province',
   kind: 'province',
-  name: 'Province of Bohol',
-  shortName: 'Bohol',
-  operator: { name: 'BetterGov.ph', url: 'https://bettergov.ph' },
-  // Where this example is deployed. Change it (or remove it) in your fork.
-  siteUrl: 'https://transparency-portal.bettergov.workers.dev',
+  name: 'Province of Batangas',
+  shortName: 'Batangas',
+  operator: { name: 'PogiCodes', url: 'https://github.com/pogicodes/batangas-transparency-portal' },
   scope: {
     offices: [
-      'Bohol 1st District Engineering Office',
-      'Bohol 2nd District Engineering Office',
-      'Bohol 3rd District Engineering Office',
+      'Batangas 1st District Engineering Office',
+      'Batangas 2nd District Engineering Office',
+      'Batangas 3rd District Engineering Office',
+      'Batangas 4th District Engineering Office',
     ],
-    places: [{ label: 'Bohol', region: 'VII' }],
-    districts: ['leg:bohol:1st', 'leg:bohol:2nd', 'leg:bohol:3rd'],
-    exclude: [],
+    places: [{ label: 'Batangas', region: 'IV-A' }],
+    districts: [
+      'leg:batangas:1st',
+      'leg:batangas:2nd',
+      'leg:batangas:3rd',
+      'leg:batangas:4th',
+      'leg:batangas:5th',
+      'leg:batangas:6th',
+    ],
+    exclude: [
+      { key: 'dpwh:house-reading:443', reason: 'Cavite–Batangas Road segment built by a Cavite district engineering office; the road is in Cavite.' },
+      { key: 'dpwh:house-reading:391', reason: 'Cavite–Batangas Road segment built by a Cavite district engineering office; the road is in Cavite.' },
+      { key: 'dpwh:house-reading:954', reason: 'Cavite–Batangas Road segment built by a Cavite district engineering office; the road is in Cavite.' },
+      { key: 'dpwh:stage:16348', reason: 'Cavite–Batangas Road segment built by a Cavite district engineering office; the road is in Cavite.' },
+      { key: 'dpwh:stage:16347', reason: 'Cavite–Batangas Road segment built by a Cavite district engineering office; the road is in Cavite.' },
+      { key: 'dpwh:house-reading:432', reason: 'Tagaytay–Batangas via Tuy Road segment built by the Cavite 2nd District Engineering Office; the segment is in Cavite.' },
+      { key: 'dpwh:house-reading:434', reason: 'Tagaytay–Batangas via Tuy Road segment built by the Cavite 2nd District Engineering Office; the segment is in Cavite.' },
+      { key: 'dpwh:house-reading:433', reason: 'Tagaytay–Batangas via Tuy Road segment built by the Cavite 2nd District Engineering Office; the segment is in Cavite.' },
+      { key: 'dpwh:house-reading:953', reason: 'Tagaytay–Batangas via Tuy Road segment built by the Cavite 2nd District Engineering Office; the segment is in Cavite.' },
+    ],
   },
   reporting: { enabled: false },
 });
