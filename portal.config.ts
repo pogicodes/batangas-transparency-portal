@@ -1,13 +1,49 @@
 /**
- * The portal this build is for, picked by the PORTAL environment variable.
- * The portals themselves are in portals/; this file only chooses one, so the
- * rest of the code keeps importing `portal.config` as upstream does.
+ * This portal's configuration: the only file a fork needs to edit.
+ * What each field means: src/config.ts. Check it against the live API with
+ * `npm run check`.
+ *
+ * The Province of Batangas. Its four DPWH district engineering offices bring
+ * in every DPWH line listed under them (the 2nd and 4th DEOs each serve two
+ * legislative districts, so they are shown whole); the place name brings in
+ * lines from all four programs whose title names Batangas.
  */
-import { pickPortal } from './portals';
+import { defineConfig } from './src/config';
 
-// The browser bundle gets PORTAL from Vite's `define` (vite.config.ts);
-// vite.config.ts and the scripts run in Node and read it from the environment.
-declare const __PORTAL__: string | undefined;
-const nodeEnv = (globalThis as { process?: { env: Record<string, string | undefined> } }).process?.env;
-
-export default pickPortal(typeof __PORTAL__ === 'string' ? __PORTAL__ : nodeEnv?.PORTAL);
+export default defineConfig({
+  id: 'batangas-province',
+  kind: 'province',
+  name: 'Province of Batangas',
+  shortName: 'Batangas',
+  siteUrl: 'https://betterbatangas.org',
+  operator: { name: 'PogiCodes', url: 'https://github.com/pogicodes/batangas-transparency-portal' },
+  scope: {
+    offices: [
+      'Batangas 1st District Engineering Office',
+      'Batangas 2nd District Engineering Office',
+      'Batangas 3rd District Engineering Office',
+      'Batangas 4th District Engineering Office',
+    ],
+    places: [{ label: 'Batangas', region: 'IV-A' }],
+    districts: [
+      'leg:batangas:1st',
+      'leg:batangas:2nd',
+      'leg:batangas:3rd',
+      'leg:batangas:4th',
+      'leg:batangas:5th',
+      'leg:batangas:6th',
+    ],
+    exclude: [
+      { key: 'dpwh:house-reading:443', reason: 'Cavite–Batangas Road segment built by a Cavite district engineering office; the road is in Cavite.' },
+      { key: 'dpwh:house-reading:391', reason: 'Cavite–Batangas Road segment built by a Cavite district engineering office; the road is in Cavite.' },
+      { key: 'dpwh:house-reading:954', reason: 'Cavite–Batangas Road segment built by a Cavite district engineering office; the road is in Cavite.' },
+      { key: 'dpwh:stage:16348', reason: 'Cavite–Batangas Road segment built by a Cavite district engineering office; the road is in Cavite.' },
+      { key: 'dpwh:stage:16347', reason: 'Cavite–Batangas Road segment built by a Cavite district engineering office; the road is in Cavite.' },
+      { key: 'dpwh:house-reading:432', reason: 'Tagaytay–Batangas via Tuy Road segment built by the Cavite 2nd District Engineering Office; the segment is in Cavite.' },
+      { key: 'dpwh:house-reading:434', reason: 'Tagaytay–Batangas via Tuy Road segment built by the Cavite 2nd District Engineering Office; the segment is in Cavite.' },
+      { key: 'dpwh:house-reading:433', reason: 'Tagaytay–Batangas via Tuy Road segment built by the Cavite 2nd District Engineering Office; the segment is in Cavite.' },
+      { key: 'dpwh:house-reading:953', reason: 'Tagaytay–Batangas via Tuy Road segment built by the Cavite 2nd District Engineering Office; the segment is in Cavite.' },
+    ],
+  },
+  reporting: { enabled: false },
+});
