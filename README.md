@@ -1,5 +1,19 @@
 # Transparency Portal
 
+> **This fork builds several portals from one codebase.** Each is a file in
+> [`portals/`](portals), listed in `portals/index.ts`, and the `PORTAL`
+> environment variable picks one at build time:
+>
+> | `PORTAL` | Portal | Site |
+> | --- | --- | --- |
+> | `batangas` (default) | Province of Batangas | [betterbatangas.org](https://betterbatangas.org) |
+> | `taal` | Municipality of Taal, Batangas | [taal.betterbatangas.org](https://taal.betterbatangas.org) |
+>
+> `PORTAL=taal npm run dev`, `PORTAL=taal npm run check`, `PORTAL=taal npm run build`.
+> On Vercel, each portal is its own project with `PORTAL` set in its environment
+> variables. An unknown `PORTAL` fails the build. `portal.config.ts` only does the
+> picking, so code merged from upstream keeps working.
+
 A small, forkable website that shows citizens **every FY 2027 budget project** for one
 LGU (province, city or municipality) or one DPWH district engineering office: what the
 NEP gave it, what the House bill (House Bill 10858) gives it, what was added or dropped,

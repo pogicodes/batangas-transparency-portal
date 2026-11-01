@@ -21,7 +21,7 @@ import { GAA_YEARS, type GaaEnvelope } from '../src/api/types.ts';
 import { count, php, plural } from '../src/lib/format.ts';
 
 const verbose = argv.includes('--verbose');
-// --config=examples/deo.config.ts checks another file; default portal.config.ts.
+// --config=examples/deo.config.ts checks another file; default portal.config.ts (the portal PORTAL names).
 const configPath = resolve(cwd(), argv.find((a) => a.startsWith('--config='))?.slice('--config='.length) ?? 'portal.config.ts');
 
 async function main() {
